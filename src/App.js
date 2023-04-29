@@ -1,14 +1,18 @@
 import "./App.css";
 import "./components/Video.css";
-import "./components/PlayButton"
+import "./components/PlayButton";
 import Video from "./components/Video";
 import videos from "./data/data";
 import PlayButton from "./components/PlayButton";
 
-
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App"
+      onClick={() => {
+        console.log("hello");
+      }}
+    >
       {videos.map((video) => (
         <Video
           key={video.id}
@@ -18,12 +22,17 @@ function App() {
           channel={video.channel}
           verified={video.verified}
           id={video.id}
-        ></Video>
+        >
+          <PlayButton
+            onPlay={() => console.log("Playing", video.title)}
+            onPause={() => {
+              console.log("Paused", video.title);
+            }}
+          >
+            {video.title}
+          </PlayButton>
+        </Video>
       ))}
-      <div style={{clear:"both"}}>
-      <PlayButton  message="me hu Play button" onSmash={()=>console.log("play")}>Play</PlayButton>
-      {/* <PlayButton  message="me hu Pause button"onSmash={()=>console.log("play")}>Pause</PlayButton> */}
-      </div>
     </div>
   );
 }
