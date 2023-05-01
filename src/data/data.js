@@ -1,4 +1,4 @@
-let videos = [
+let videoDB = [
   {
     id: 77,
     title: "React js Tutorial",
@@ -24,4 +24,4 @@ let videos = [
     verified: true,
   }
 ];
-export default videos;
+export default videoDB;

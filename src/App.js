@@ -1,11 +1,16 @@
 import "./App.css";
 import "./components/Video.css";
 import "./components/PlayButton";
-import Video from "./components/Video";
-import videos from "./data/data";
-import PlayButton from "./components/PlayButton";
+import videoDB from "./data/data";
+import AddVideo from "./components/AddVideo";
+import VideoList from "./components/VideoList";
+import { useState } from "react";
 
 function App() {
+  const [videos, setVideos] = useState(videoDB);
+  const addVideos = (video) => {
+    setVideos([...videos, { ...video, id: videos.length + 1 }]);
+  };
   return (
     <div
       className="App"
@@ -13,26 +18,9 @@ function App() {
         console.log("hello");
       }}
     >
-      {videos.map((video) => (
-        <Video
-          key={video.id}
-          title={video.title}
-          views={video.views}
-          time={video.time}
-          channel={video.channel}
-          verified={video.verified}
-          id={video.id}
-        >
-          <PlayButton
-            onPlay={() => console.log("Playing", video.title)}
-            onPause={() => {
-              console.log("Paused", video.title);
-            }}
-          >
-            {video.title}
-          </PlayButton>
-        </Video>
-      ))}
+      <AddVideo addVideos={addVideos}></AddVideo>
+
+      <VideoList videos={videos}></VideoList>
     </div>
   );
 }

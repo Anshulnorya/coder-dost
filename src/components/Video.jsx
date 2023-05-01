@@ -12,7 +12,7 @@ function Video({ title, channel = "DEMO K VLOGS", views, time, verified, id ,chi
           {channel} {verified && "✅"}
         </div>
         <div className="views">
-          {views} Views<span>.</span>
+         
           {views} Views<span>.</span>
           {time}
         </div>
